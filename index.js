@@ -81,11 +81,53 @@ function handleItemCheckClicked() {
   });
 }
 
+function deleteItemForListItem(itemID) {
+    const deletedItem = STORE.find(item => item.id === itemID);
+    const item = STORE.indexOf(deletedItem);
+    console.log(item);
+    STORE.splice(item, 1);
+}
+
+/*
+
+arr.find(element => whatever)
+arr.map(element => whatever)
+arr.filter(element => whatever)
+arr.forEach(element => whatever)
+
+const STORE = [
+  {id: cuid(), name: "apples", checked: false},
+  {id: cuid(), name: "oranges", checked: false},
+  {id: cuid(), name: "milk", checked: true},
+  {id: cuid(), name: "bread", checked: false}
+];
+
+STORE( element => whatever)
+STORE( {id: cuid(), name: "apples", checked: false} => whatever)
+STORE( {id: cuid(), name: "oranges", checked: false} => whatever)
+STORE( {id: cuid(), name: "milk", checked: true} => whatever)
+STORE( {id: cuid(), name: "break", checked: false} => whatever)
+
+arr = [1, 2, 3, 4]
+find number = 4
+arr.find(number => number = 4)
+for(i = 0, i < arr.length; i++) {
+    arr[i] = 4
+    return true if
+}
+
+*/
+
 
 function handleDeleteItemClicked() {
   // this function will be responsible for when users want to delete a shopping list
   // item
-  console.log('`handleDeleteItemClicked` ran')
+  $('.js-shopping-list').on('click', `.js-item-delete`, event => {
+    console.log('`handleDeleteItemClicked` ran')
+    const id = getItemIdFromElement(event.currentTarget);
+    deleteItemForListItem(id);
+    renderShoppingList();
+    })
 }
 
 // this function will be our callback when the page loads. it's responsible for
